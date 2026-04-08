@@ -1,0 +1,51 @@
+<section class="details-overlay" (click)="close()">
+  <mat-card class="details-card" (click)="$event.stopPropagation()">
+    <div class="details-header-row">
+      <div class="details-heading-text">
+        <mat-card-title>Mission Details</mat-card-title>
+        @if (mission() && !loading() && !error()) {
+          <mat-card-subtitle>
+            {{ mission()!.mission_name }} | Flight #{{ mission()!.flight_number }} | {{ mission()!.launch_year }}
+          </mat-card-subtitle>
+        }
+      </div>
+      <button mat-stroked-button type="button" (click)="close()">Close</button>
+    </div>
+
+    @if (loading()) {
+      <mat-card-content>Loading mission details...</mat-card-content>
+    } @else if (error()) {
+      <mat-card-content>{{ error() }}</mat-card-content>
+    } @else if (mission()) {
+      <mat-card-content>
+        @if (mission()!.links.mission_patch_small) {
+          <img
+            class="details-image"
+            [src]="mission()!.links.mission_patch_small"
+            [alt]="mission()!.mission_name + ' mission patch'"
+          />
+        }
+
+        <p class="details-copy">{{ mission()!.details || 'No mission details provided.' }}</p>
+        <div class="detail-grid">
+          <p><strong>Rocket Name:</strong> {{ mission()!.rocket.rocket_name }}</p>
+          <p><strong>Rocket Type:</strong> {{ mission()!.rocket.rocket_type }}</p>
+          <p><strong>Launch Site:</strong> {{ mission()!.launch_site.site_name_long }}</p>
+          <p><strong>Status:</strong> {{ mission()!.launch_success === true ? 'Success' : mission()!.launch_success === false ? 'Failed' : 'Unknown' }}</p>
+        </div>
+
+        <div class="detail-links">
+          @if (mission()!.links.article_link) {
+            <a [href]="mission()!.links.article_link" target="_blank" rel="noopener">Article</a>
+          }
+          @if (mission()!.links.wikipedia) {
+            <a [href]="mission()!.links.wikipedia" target="_blank" rel="noopener">Wikipedia</a>
+          }
+          @if (mission()!.links.video_link) {
+            <a [href]="mission()!.links.video_link" target="_blank" rel="noopener">Video</a>
+          }
+        </div>
+      </mat-card-content>
+    }
+  </mat-card>
+</section>

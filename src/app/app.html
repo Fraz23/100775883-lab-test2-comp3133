@@ -1,7 +1,10 @@
+<div class="space-parallax" aria-hidden="true">
+</div>
+
 <main class="page-shell">
   <header class="hero">
     <h1>{{ title }}</h1>
-    <p>Browse SpaceX missions using search and filters powered by Angular signals.</p>
+    <p class="hero-subtitle">Browse SpaceX missions with year-based API filters and mission detail drill-down.</p>
   </header>
 
   <section class="stats-grid" aria-label="Launch summary">
@@ -23,13 +26,31 @@
     </article>
   </section>
 
-  <app-launch-filters [filterForm]="filterForm" [years]="years()"></app-launch-filters>
+  <section class="panel filter-panel">
+    <h2 class="panel-title">Mission Filters</h2>
+    <app-missionfilter [filterForm]="filterForm" [years]="years()"></app-missionfilter>
+  </section>
 
   @if (loading()) {
     <section class="feedback-card">Loading SpaceX launches...</section>
   } @else if (error()) {
     <section class="feedback-card error">{{ error() }}</section>
   } @else {
-    <app-launch-list [launches]="filteredLaunches()"></app-launch-list>
+    <section class="dashboard-layout">
+      <section class="panel list-panel">
+        <h2 class="panel-title">Mission List</h2>
+        <app-missionlist
+          [launches]="filteredLaunches()"
+          (missionSelected)="onMissionSelected($event)"
+        ></app-missionlist>
+      </section>
+    </section>
+  }
+
+  @if (selectedFlightNumber() !== null) {
+    <app-missiondetails
+      [flightNumber]="selectedFlightNumber()"
+      (closeRequested)="closeMissionDetails()"
+    ></app-missiondetails>
   }
 </main>
