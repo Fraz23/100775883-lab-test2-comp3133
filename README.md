@@ -54,6 +54,12 @@ This Angular application was created for the COMP 3133 Lab Test 2 assignment. It
 - Hosting platform: Vercel
 - Hosted app link: https://100775883-lab-test2-comp3133.vercel.app/
 
+## Instructions to Run
+
+1. Install dependencies with `npm install`.
+2. Start the development server with `npm start`.
+3. Open the local URL shown in the terminal, usually `http://localhost:4200/`.
+
 ## Screenshots
 
 The screenshots below are embedded directly in the README.
