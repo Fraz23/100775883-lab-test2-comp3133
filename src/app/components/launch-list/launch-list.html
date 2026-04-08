@@ -1,0 +1,55 @@
+<section class="list-toolbar">
+	<label>
+		<input type="checkbox" [(ngModel)]="showDetails" />
+		Show mission details
+	</label>
+</section>
+
+@if (launches.length === 0) {
+	<section class="empty-state">No launches match the current filters.</section>
+} @else {
+	<section class="launch-grid">
+		@for (launch of launches; track launch.flight_number) {
+			<article class="launch-card">
+				<header>
+					<h3>{{ launch.mission_name }}</h3>
+					<p>#{{ launch.flight_number }} • {{ launch.launch_date_utc | date:'mediumDate' }}</p>
+				</header>
+
+				<div class="chip-row">
+					<span class="chip">{{ launch.launch_success | launchStatus }}</span>
+					<span class="chip">{{ launch.rocket.rocket_name }}</span>
+					<span class="chip">{{ launch.launch_year }}</span>
+				</div>
+
+				@switch (launch.launch_success) {
+					@case (true) {
+						<p class="status-text success">Mission completed successfully.</p>
+					}
+					@case (false) {
+						<p class="status-text fail">Mission failed.</p>
+					}
+					@default {
+						<p class="status-text upcoming">Launch status pending.</p>
+					}
+				}
+
+				@if (showDetails) {
+					<p class="details">{{ launch.details || 'No mission details provided.' }}</p>
+				}
+
+				<div class="links">
+					@if (launch.links.article_link) {
+						<a [href]="launch.links.article_link" target="_blank" rel="noopener">Article</a>
+					}
+					@if (launch.links.video_link) {
+						<a [href]="launch.links.video_link" target="_blank" rel="noopener">Video</a>
+					}
+					@if (launch.links.wikipedia) {
+						<a [href]="launch.links.wikipedia" target="_blank" rel="noopener">Wiki</a>
+					}
+				</div>
+			</article>
+		}
+	</section>
+}

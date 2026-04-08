@@ -1,0 +1,26 @@
+<section class="filters-card" [formGroup]="filterForm" aria-label="Search and filters">
+	<label class="field">
+		<span>Mission Search</span>
+		<input type="text" formControlName="mission" placeholder="Type mission name" />
+	</label>
+
+	<label class="field">
+		<span>Launch Year</span>
+		<select formControlName="year">
+			<option value="all">All years</option>
+			@for (year of years; track year) {
+				<option [value]="year">{{ year }}</option>
+			}
+		</select>
+	</label>
+
+	<label class="field">
+		<span>Status</span>
+		<select formControlName="status">
+			<option value="all">All statuses</option>
+			<option value="success">Successful</option>
+			<option value="failed">Failed</option>
+			<option value="upcoming">Upcoming</option>
+		</select>
+	</label>
+</section>

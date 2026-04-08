@@ -1,0 +1,35 @@
+<main class="page-shell">
+  <header class="hero">
+    <h1>{{ title }}</h1>
+    <p>Browse SpaceX missions using search and filters powered by Angular signals.</p>
+  </header>
+
+  <section class="stats-grid" aria-label="Launch summary">
+    <article class="stat-card">
+      <span class="stat-label">Visible Launches</span>
+      <strong class="stat-value">{{ stats().total }}</strong>
+    </article>
+    <article class="stat-card">
+      <span class="stat-label">Successful</span>
+      <strong class="stat-value">{{ stats().successful }}</strong>
+    </article>
+    <article class="stat-card">
+      <span class="stat-label">Failed</span>
+      <strong class="stat-value">{{ stats().failed }}</strong>
+    </article>
+    <article class="stat-card">
+      <span class="stat-label">Upcoming</span>
+      <strong class="stat-value">{{ stats().upcoming }}</strong>
+    </article>
+  </section>
+
+  <app-launch-filters [filterForm]="filterForm" [years]="years()"></app-launch-filters>
+
+  @if (loading()) {
+    <section class="feedback-card">Loading SpaceX launches...</section>
+  } @else if (error()) {
+    <section class="feedback-card error">{{ error() }}</section>
+  } @else {
+    <app-launch-list [launches]="filteredLaunches()"></app-launch-list>
+  }
+</main>
