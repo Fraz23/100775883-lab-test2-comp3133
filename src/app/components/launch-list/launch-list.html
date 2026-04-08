@@ -11,14 +11,28 @@
 	<section class="launch-grid">
 		@for (launch of launches; track launch.flight_number) {
 			<article class="launch-card">
-				<header>
-					<h3>{{ launch.mission_name }}</h3>
-					<p>#{{ launch.flight_number }} • {{ launch.launch_date_utc | date:'mediumDate' }}</p>
+				<header class="launch-header">
+					@if (launch.links.mission_patch_small) {
+						<img
+							class="mission-patch"
+							[src]="launch.links.mission_patch_small"
+							[alt]="launch.mission_name + ' mission patch'"
+						/>
+					} @else {
+						<div class="patch-fallback">SPX</div>
+					}
+
+					<div>
+						<h3>{{ launch.mission_name }}</h3>
+						<p>#{{ launch.flight_number }} • {{ launch.launch_date_utc | date:'mediumDate' }}</p>
+						<p class="site">{{ launch.launch_site.site_name_long }}</p>
+					</div>
 				</header>
 
 				<div class="chip-row">
 					<span class="chip">{{ launch.launch_success | launchStatus }}</span>
 					<span class="chip">{{ launch.rocket.rocket_name }}</span>
+					<span class="chip">{{ launch.rocket.rocket_type }}</span>
 					<span class="chip">{{ launch.launch_year }}</span>
 				</div>
 
