@@ -1,0 +1,108 @@
+.empty-state {
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1rem 1.1rem;
+  background: rgba(15, 23, 41, 0.92);
+}
+
+.launch-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.launch-card {
+  border: 1px solid rgba(50, 230, 255, 0.18);
+  border-radius: 0.9rem;
+  background: linear-gradient(170deg, rgba(15, 23, 41, 0.97), rgba(18, 29, 51, 0.95));
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.launch-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(2, 5, 14, 0.45);
+}
+
+.launch-card mat-card-title {
+  font-size: 1.28rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+}
+
+.launch-card mat-card-subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.launch-card mat-card-content {
+  margin-top: 0.55rem;
+}
+
+.mission-image {
+  width: calc(100% - 2rem);
+  height: 180px;
+  margin: 1rem 1rem 0.25rem;
+  border-radius: 0.8rem;
+  border: 1px solid rgba(140, 188, 255, 0.25);
+  object-fit: contain;
+  background: radial-gradient(circle at 50% 50%, rgba(20, 31, 56, 0.92), rgba(10, 16, 31, 0.95));
+  padding: 0.7rem;
+}
+
+.mission-fallback {
+  display: grid;
+  place-items: center;
+  color: var(--cyan);
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.summary-row {
+  margin: 0.32rem 0;
+  color: var(--text-main);
+  font-size: 0.96rem;
+}
+
+.summary-inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.flight-tag {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.details-link {
+  border: none;
+  background: transparent;
+  color: var(--cyan);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  padding: 0;
+}
+
+.details-link:hover {
+  color: var(--magenta);
+}
+
+.details-link:focus-visible {
+  outline: 2px solid rgba(50, 230, 255, 0.55);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (max-width: 900px) {
+  .launch-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-image {
+    height: 160px;
+  }
+}

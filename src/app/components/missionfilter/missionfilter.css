@@ -1,0 +1,40 @@
+.filters-card {
+  border: 1px solid rgba(50, 230, 255, 0.2);
+  border-radius: 0.75rem;
+  padding: 1rem 1rem 0.2rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  background: linear-gradient(165deg, rgba(18, 29, 51, 0.88), rgba(15, 23, 41, 0.93));
+}
+
+.filters-card mat-form-field {
+  width: 100%;
+}
+
+:host ::ng-deep .filters-card .mdc-floating-label,
+:host ::ng-deep .filters-card .mat-mdc-select-value-text,
+:host ::ng-deep .filters-card input {
+  color: #b8c8e6 !important;
+}
+
+:host ::ng-deep .filters-card input::placeholder {
+  color: rgba(184, 200, 230, 0.55) !important;
+}
+
+:host ::ng-deep .filters-card .mat-mdc-text-field-wrapper {
+  background: rgba(9, 15, 30, 0.88) !important;
+}
+
+:host ::ng-deep .filters-card .mat-mdc-form-field-outline,
+:host ::ng-deep .filters-card .mdc-notched-outline__leading,
+:host ::ng-deep .filters-card .mdc-notched-outline__notch,
+:host ::ng-deep .filters-card .mdc-notched-outline__trailing {
+  border-color: rgba(140, 188, 255, 0.45) !important;
+}
+
+@media (max-width: 720px) {
+  .filters-card {
+    grid-template-columns: 1fr;
+  }
+}

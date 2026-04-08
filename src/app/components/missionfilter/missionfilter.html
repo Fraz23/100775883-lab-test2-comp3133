@@ -1,0 +1,26 @@
+<section class="filters-card" [formGroup]="filterForm" aria-label="Launch year filters">
+  <mat-form-field appearance="outline">
+    <mat-label>Mission Name</mat-label>
+    <input matInput type="text" formControlName="mission" placeholder="Search by mission name" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Launch Year</mat-label>
+    <mat-select formControlName="year" panelClass="mission-filter-panel">
+      <mat-option value="all">All years</mat-option>
+      @for (year of years; track year) {
+        <mat-option [value]="year">{{ year }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Status</mat-label>
+    <mat-select formControlName="status" panelClass="mission-filter-panel">
+      <mat-option value="all">All statuses</mat-option>
+      <mat-option value="success">Successful</mat-option>
+      <mat-option value="failed">Failed</mat-option>
+      <mat-option value="upcoming">Upcoming</mat-option>
+    </mat-select>
+  </mat-form-field>
+</section>

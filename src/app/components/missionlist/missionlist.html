@@ -1,0 +1,41 @@
+@if (launches.length === 0) {
+  <section class="empty-state">No launches match the current filters.</section>
+} @else {
+  <section class="launch-grid">
+    @for (launch of launches; track launch.flight_number) {
+      <mat-card class="launch-card">
+        @if (launch.links.mission_patch_small) {
+          <img
+            class="mission-image"
+            [src]="launch.links.mission_patch_small"
+            [alt]="launch.mission_name + ' mission patch'"
+          />
+        } @else {
+          <div class="mission-image mission-fallback">SPACEX</div>
+        }
+
+        <mat-card-header>
+          <mat-card-title>{{ launch.mission_name }}</mat-card-title>
+          <mat-card-subtitle>
+            Flight #{{ launch.flight_number }}
+          </mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p class="summary-row"><strong>Status:</strong> {{ launch.launch_success | launchStatus }}</p>
+          <p class="summary-row"><strong>Date:</strong> {{ launch.launch_date_utc | date:'mediumDate' }}</p>
+          <p class="summary-row summary-inline">
+            <span><strong>Rocket:</strong> {{ launch.rocket.rocket_name }}</span>
+            <button
+              type="button"
+              class="details-link"
+              (click)="selectMission(launch.flight_number)"
+            >
+              View Mission Details
+            </button>
+          </p>
+        </mat-card-content>
+      </mat-card>
+    }
+  </section>
+}
