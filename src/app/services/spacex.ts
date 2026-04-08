@@ -14,4 +14,12 @@ export class SpacexService {
   fetchLaunches(): Observable<Launch[]> {
     return this.http.get<Launch[]>(this.apiUrl);
   }
+
+  fetchLaunchesByYear(year: string): Observable<Launch[]> {
+    return this.http.get<Launch[]>(`${this.apiUrl}?launch_year=${year}`);
+  }
+
+  fetchMissionDetails(flightNumber: number): Observable<Launch> {
+    return this.http.get<Launch>(`${this.apiUrl}/${flightNumber}`);
+  }
 }

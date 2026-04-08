@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "spacex-launch-explorer": {
+    "100775883-lab-test2-comp3133": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -33,7 +33,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
+                  "maximumWarning": "700kB",
                   "maximumError": "1MB"
                 },
                 {
@@ -56,10 +56,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "spacex-launch-explorer:build:production"
+              "buildTarget": "100775883-lab-test2-comp3133:build:production"
             },
             "development": {
-              "buildTarget": "spacex-launch-explorer:build:development"
+              "buildTarget": "100775883-lab-test2-comp3133:build:development"
             }
           },
           "defaultConfiguration": "development"
